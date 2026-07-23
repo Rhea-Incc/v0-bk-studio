@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
       { title: "BK Studio — Hospitality Growth Systems" },
       { name: "description", content: "We build hospitality growth systems. Content, booking funnels, CRM, automation and communities for hotels, lodges, luxury Airbnb operators and travel brands." },
       { property: "og:title", content: "BK Studio — Hospitality Growth Systems" },
-      { property: "og:description", content: "Content, booking, CRM, automation, communities. Everything working together." },
+      { property: "og:description", content: "We build hospitality growth systems. Content, booking funnels, CRM, automation and communities for hotels, lodges, luxury Airbnb operators and travel brands." },
       { property: "og:image", content: media.gravityImg.url },
       { name: "twitter:image", content: media.gravityImg.url },
     ],
