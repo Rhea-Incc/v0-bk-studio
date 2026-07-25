@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell, Eyebrow, FinalCTA } from "@/components/bk/shared";
-import { industryBySlug, industries } from "@/lib/industries";
+import { industryBySlug, industries, type Industry } from "@/lib/industries";
+
 
 export const Route = createFileRoute("/industries/$slug")({
   loader: ({ params }) => {
