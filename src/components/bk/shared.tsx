@@ -168,11 +168,13 @@ export function PageHeader({
    ============================================================ */
 
 const NAV = [
+  { to: "/industries", label: "Industries" },
   { to: "/framework", label: "Framework" },
   { to: "/services", label: "Services" },
   { to: "/work", label: "Work" },
   { to: "/studio", label: "Studio" },
 ] as const;
+
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
