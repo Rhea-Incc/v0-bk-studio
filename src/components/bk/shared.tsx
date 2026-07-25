@@ -209,7 +209,9 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <Link to="/auth" className="hidden md:inline-flex text-[12px] text-espresso hover:text-cocoa nav-link">Sign in</Link>
           <Link to="/contact" className="hidden sm:inline-flex btn btn-primary text-[12px] py-2.5 px-4">Book a Session</Link>
+
           <button
             className="md:hidden h-10 w-10 grid place-items-center border hairline rounded-full"
             aria-label="Menu"
