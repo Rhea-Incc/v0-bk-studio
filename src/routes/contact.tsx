@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { z } from "zod";
 import { PageShell, PageHeader, Eyebrow, media } from "@/components/bk/shared";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { industries } from "@/lib/industries";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -15,7 +20,41 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const schema = z.object({
+  name: z.string().trim().min(1).max(120),
+  email: z.string().trim().email().max(255),
+  company: z.string().trim().max(160).optional().or(z.literal("")),
+  industry: z.string().max(60).optional().or(z.literal("")),
+  message: z.string().trim().min(10).max(3000),
+});
+
 function ContactPage() {
+  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", message: "" });
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    const parsed = schema.safeParse(form);
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      company: parsed.data.company || null,
+      industry: parsed.data.industry || null,
+      message: parsed.data.message,
+    });
+    setBusy(false);
+    if (error) { toast.error(error.message); return; }
+    setSent(true);
+    setForm({ name: "", email: "", company: "", industry: "", message: "" });
+    toast.success("Thank you. We'll be in touch.");
+  }
+
   return (
     <PageShell>
       <PageHeader
@@ -26,23 +65,33 @@ function ContactPage() {
       />
       <section className="max-w-editorial container-x pb-32 md:pb-48">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
-          <form className="md:col-span-7 space-y-6" onSubmit={(e) => e.preventDefault()} data-reveal>
-            {[
-              { l: "Your name", n: "name", t: "text" },
-              { l: "Email", n: "email", t: "email" },
-              { l: "Brand or property", n: "brand", t: "text" },
-              { l: "Website", n: "website", t: "url" },
-            ].map((f) => (
-              <label key={f.n} className="block">
-                <span className="divider-num">{f.l}</span>
-                <input type={f.t} name={f.n} className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa transition-colors" />
-              </label>
-            ))}
-            <label className="block">
-              <span className="divider-num">What are you building?</span>
-              <textarea rows={5} className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa transition-colors resize-none" />
-            </label>
-            <button type="submit" className="btn btn-primary mt-6">Send Request →</button>
+          <form className="md:col-span-7 space-y-6" onSubmit={submit} data-reveal>
+            <Row label="Your name">
+              <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa" />
+            </Row>
+            <Row label="Email">
+              <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa" />
+            </Row>
+            <Row label="Brand or property">
+              <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })}
+                className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa" />
+            </Row>
+            <Row label="Industry">
+              <select value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })}
+                className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa">
+                <option value="">Select…</option>
+                {industries.map((i) => <option key={i.slug} value={i.slug}>{i.name}</option>)}
+              </select>
+            </Row>
+            <Row label="What are you building?">
+              <textarea rows={5} required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="mt-2 w-full bg-transparent border-b hairline py-3 text-cocoa text-[16px] focus:outline-none focus:border-cocoa resize-none" />
+            </Row>
+            <button type="submit" disabled={busy} className="btn btn-primary mt-6">
+              {busy ? "Sending…" : sent ? "Sent ✓" : "Send Request →"}
+            </button>
           </form>
           <aside className="md:col-span-4 md:col-start-9 space-y-8" data-reveal>
             <div>
@@ -61,5 +110,14 @@ function ContactPage() {
         </div>
       </section>
     </PageShell>
+  );
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="divider-num">{label}</span>
+      {children}
+    </label>
   );
 }
