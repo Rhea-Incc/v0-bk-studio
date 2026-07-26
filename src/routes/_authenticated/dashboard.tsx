@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PageShell, Eyebrow } from "@/components/bk/shared";
 import { industries } from "@/lib/industries";
@@ -39,6 +40,13 @@ function Dashboard() {
 
   const industry = industries.find((i) => i.slug === profile.data?.industry) ?? industries[0];
 
+  // Auto-redirect first-time clients into the onboarding wizard.
+  useEffect(() => {
+    if (profile.isSuccess && profile.data && !profile.data.industry) {
+      navigate({ to: "/onboarding", replace: true });
+    }
+  }, [profile.isSuccess, profile.data, navigate]);
+
   async function signOut() {
     await supabase.auth.signOut();
     navigate({ to: "/", replace: true });
@@ -56,6 +64,7 @@ function Dashboard() {
           <h1 className="font-serif text-5xl md:text-6xl text-cocoa mt-4">Good to see you{profile.data?.full_name ? `, ${profile.data.full_name.split(" ")[0]}` : ""}.</h1>
         </div>
         <div className="flex items-center gap-2">
+          <Link to="/onboarding" className="btn btn-ghost">Redo onboarding</Link>
           {isAdmin.data && <Link to="/admin" className="btn btn-ghost">Admin</Link>}
           <button onClick={signOut} className="btn btn-primary">Sign out</button>
         </div>
