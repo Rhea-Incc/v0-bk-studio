@@ -40,10 +40,11 @@ function Onboarding() {
 
   // Hydrate defaults from profile once it loads
   useMemo(() => {
-    if (profile.data) {
-      setName((n) => n || profile.data.full_name || "");
-      setCompany((c) => c || profile.data.company || "");
-      setIndustry((i) => i || profile.data.industry || "");
+    const p = profile.data;
+    if (p) {
+      setName((n) => n || p.full_name || "");
+      setCompany((c) => c || p.company || "");
+      setIndustry((i) => i || p.industry || "");
     }
   }, [profile.data]);
 
