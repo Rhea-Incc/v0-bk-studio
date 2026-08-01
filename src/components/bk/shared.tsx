@@ -10,6 +10,22 @@ import signalImg from "@/assets/signal.png.asset.json";
 import moroccoImg from "@/assets/morocco.jpg.asset.json";
 import interiorImg from "@/assets/interior.jpg.asset.json";
 import dotsImg from "@/assets/dots.png.asset.json";
+import { assetUrl } from "@/lib/media";
+
+const portableAsset = <T extends { url: string }>(pointer: T): T => ({
+  ...pointer,
+  url: assetUrl(pointer),
+});
+
+heroVideo = portableAsset(heroVideo);
+glassImg = portableAsset(glassImg);
+timberImg = portableAsset(timberImg);
+bronzeImg = portableAsset(bronzeImg);
+gravityImg = portableAsset(gravityImg);
+signalImg = portableAsset(signalImg);
+moroccoImg = portableAsset(moroccoImg);
+interiorImg = portableAsset(interiorImg);
+dotsImg = portableAsset(dotsImg);
 
 export const media = {
   heroVideo, glassImg, timberImg, bronzeImg, gravityImg,
