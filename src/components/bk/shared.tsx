@@ -1,15 +1,15 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-import heroVideo from "@/assets/hero.mp4.asset.json";
-import glassImg from "@/assets/glass.jpg.asset.json";
-import timberImg from "@/assets/timber.jpg.asset.json";
-import bronzeImg from "@/assets/bronze.jpg.asset.json";
-import gravityImg from "@/assets/gravity.png.asset.json";
-import signalImg from "@/assets/signal.png.asset.json";
-import moroccoImg from "@/assets/morocco.jpg.asset.json";
-import interiorImg from "@/assets/interior.jpg.asset.json";
-import dotsImg from "@/assets/dots.png.asset.json";
+import heroVideoPointer from "@/assets/hero.mp4.asset.json";
+import glassImgPointer from "@/assets/glass.jpg.asset.json";
+import timberImgPointer from "@/assets/timber.jpg.asset.json";
+import bronzeImgPointer from "@/assets/bronze.jpg.asset.json";
+import gravityImgPointer from "@/assets/gravity.png.asset.json";
+import signalImgPointer from "@/assets/signal.png.asset.json";
+import moroccoImgPointer from "@/assets/morocco.jpg.asset.json";
+import interiorImgPointer from "@/assets/interior.jpg.asset.json";
+import dotsImgPointer from "@/assets/dots.png.asset.json";
 import { assetUrl } from "@/lib/media";
 
 const portableAsset = <T extends { url: string }>(pointer: T): T => ({
@@ -17,15 +17,15 @@ const portableAsset = <T extends { url: string }>(pointer: T): T => ({
   url: assetUrl(pointer),
 });
 
-heroVideo = portableAsset(heroVideo);
-glassImg = portableAsset(glassImg);
-timberImg = portableAsset(timberImg);
-bronzeImg = portableAsset(bronzeImg);
-gravityImg = portableAsset(gravityImg);
-signalImg = portableAsset(signalImg);
-moroccoImg = portableAsset(moroccoImg);
-interiorImg = portableAsset(interiorImg);
-dotsImg = portableAsset(dotsImg);
+const heroVideo = portableAsset(heroVideoPointer);
+const glassImg = portableAsset(glassImgPointer);
+const timberImg = portableAsset(timberImgPointer);
+const bronzeImg = portableAsset(bronzeImgPointer);
+const gravityImg = portableAsset(gravityImgPointer);
+const signalImg = portableAsset(signalImgPointer);
+const moroccoImg = portableAsset(moroccoImgPointer);
+const interiorImg = portableAsset(interiorImgPointer);
+const dotsImg = portableAsset(dotsImgPointer);
 
 export const media = {
   heroVideo, glassImg, timberImg, bronzeImg, gravityImg,
