@@ -3,6 +3,7 @@ import timberImg from "@/assets/timber.jpg.asset.json";
 import bronzeImg from "@/assets/bronze.jpg.asset.json";
 import moroccoImg from "@/assets/morocco.jpg.asset.json";
 import interiorImg from "@/assets/interior.jpg.asset.json";
+import { assetUrl } from "@/lib/media";
 
 export type Industry = {
   slug: string;
@@ -28,7 +29,7 @@ export const industries: Industry[] = [
     chapter: "Chapter 11",
     name: "Boutique Hotels",
     tagline: "Design-led properties, quietly filled.",
-    hero: interiorImg.url,
+    hero: assetUrl(interiorImg),
     philosophy:
       "A boutique hotel isn't a room inventory — it's a point of view. We build the systems that translate that point of view into full occupancy at rate integrity, without diluting the brand in OTA fine print.",
     useCase: {
@@ -72,7 +73,7 @@ export const industries: Industry[] = [
     chapter: "Chapter 12",
     name: "Safari Lodges & Resorts",
     tagline: "Remote luxury, deeply booked.",
-    hero: timberImg.url,
+    hero: assetUrl(timberImg),
     philosophy:
       "Lodges live and die by season, guide quality, and word of mouth. We treat marketing as guide training extended: the story you tell before arrival is the story guests carry home.",
     useCase: {
@@ -116,7 +117,7 @@ export const industries: Industry[] = [
     chapter: "Chapter 13",
     name: "Luxury Airbnb & Villas",
     tagline: "Portfolios that behave like a brand.",
-    hero: glassImg.url,
+    hero: assetUrl(glassImg),
     philosophy:
       "A portfolio of villas is only as strong as the single, unified brand behind them. We move you off platform dependency and onto a branded booking layer that compounds each property's marketing.",
     useCase: {
@@ -160,7 +161,7 @@ export const industries: Industry[] = [
     chapter: "Chapter 14",
     name: "Travel Brands & DMCs",
     tagline: "Destinations that sell themselves.",
-    hero: moroccoImg.url,
+    hero: assetUrl(moroccoImg),
     philosophy:
       "Tour operators and destination brands sell trust as much as itineraries. We build the editorial infrastructure that lets a traveller feel the trip before they book it.",
     useCase: {
@@ -204,7 +205,7 @@ export const industries: Industry[] = [
     chapter: "Chapter 15",
     name: "Restaurants & Chef Brands",
     tagline: "Full covers, on brand.",
-    hero: bronzeImg.url,
+    hero: assetUrl(bronzeImg),
     philosophy:
       "A restaurant lives at the intersection of walk-by, algorithm, and reputation. We build the systems that turn a single seat into a returning guest, and a single dish into a story that travels.",
     useCase: {
