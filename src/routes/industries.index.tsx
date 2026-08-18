@@ -6,9 +6,9 @@ export const Route = createFileRoute("/industries/")({
   head: () => ({
     meta: [
       { title: "Industries — BK Studio" },
-      { name: "description", content: "Growth systems tailored to each hospitality vertical: boutique hotels, safari lodges, luxury villas, travel brands, and restaurants." },
+      { name: "description", content: "Growth systems tailored to each hospitality vertical: boutique hotels, safari lodges, luxury villas, travel brands, restaurants, and coach transport." },
       { property: "og:title", content: "Industries — BK Studio" },
-      { property: "og:description", content: "One studio, five hospitality verticals. Each with its own philosophy, pipeline, and deliverables." },
+      { property: "og:description", content: "One studio, six hospitality verticals. Each with its own philosophy, pipeline, and deliverables." },
     ],
   }),
   component: IndustriesIndex,
@@ -20,7 +20,7 @@ function IndustriesIndex() {
       <PageHeader
         num="Chapter 10"
         kicker="Industries"
-        title={<>Five verticals. <span className="italic">One studio.</span></>}
+        title={<>Six verticals. <span className="italic">One studio.</span></>}
         lede="Every hospitality category we serve gets its own philosophy, pipeline, and set of deliverables. Choose yours."
       />
       <section className="max-w-editorial container-x pb-32">

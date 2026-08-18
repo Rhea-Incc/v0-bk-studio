@@ -100,7 +100,7 @@ function ContactPage() {
             </div>
             <div>
               <Eyebrow num="B">Offices</Eyebrow>
-              <p className="text-espresso text-[15px] leading-[1.7] mt-3">Lisbon · Marrakech · London.<br/>Partners globally.</p>
+              <p className="text-espresso text-[15px] leading-[1.7] mt-3">Sebuleni Center, Riara Road · Nairobi · <Mombasa></Mombasa>.<br/>Partners globally.</p>
             </div>
             <div>
               <Eyebrow num="C">Availability</Eyebrow>

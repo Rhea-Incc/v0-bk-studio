@@ -3,6 +3,7 @@ import timberImg from "@/assets/timber.jpg.asset.json";
 import bronzeImg from "@/assets/bronze.jpg.asset.json";
 import moroccoImg from "@/assets/morocco.jpg.asset.json";
 import interiorImg from "@/assets/interior.jpg.asset.json";
+import coachImg from "@/assets/coach.jpg.asset.json";
 import { assetUrl } from "@/lib/media";
 
 export type Industry = {
@@ -241,6 +242,50 @@ export const industries: Industry[] = [
         { name: "Waitlist walk-ins", a: "412",  b: "$154 ATV", c: "$63k"  },
         { name: "Members",           a: "168",  b: "$248 ATV", c: "$41k"  },
         { name: "Private events",    a: "58",   b: "$3,900 avg", c: "$226k" },
+      ],
+    },
+  },
+  {
+    slug: "coach-transport",
+    chapter: "Chapter 16",
+    name: "Coach & Transport Services",
+    tagline: "Routes that build community.",
+    hero: assetUrl(coachImg),
+    philosophy:
+      "A coach operator isn't in the business of moving bodies between points — you're orchestrating the stories passengers tell about the journey. We build the booking, loyalty, and content systems that turn passengers into advocates and one-time rides into recurring rituals.",
+    useCase: {
+      title: "A 12-coach operator with 60% seasonal variance and 2.1 repeat rate",
+      body: "You fill summer and own the commute. But margins evaporate in the shoulder. We build the corporate partnerships, membership models, and content engine that make your regular routes a destination, not just a transit.",
+    },
+    pipeline: [
+      { step: "01", label: "Route & rider audit", body: "Journey touchpoints, operator story, crew personalities, route history — what passengers remember." },
+      { step: "02", label: "Direct booking engine", body: "First-party seat inventory with channel sync to Busbud, Omio, FlixBus — without the leakage." },
+      { step: "03", label: "Journey content system", body: "Route guides, driver journals, destination briefs, in-journey experiences — passengers feel the story." },
+      { step: "04", label: "Loyalty & corporate programs", body: "Monthly passes for commuters, corporate partnerships for team transport, referral rewards." },
+      { step: "05", label: "Dynamic yield & retention", body: "Pricing tiers by demand, seat-fill forecasting, re-engagement for churned riders." },
+    ],
+    deliverables: [
+      "Direct booking site + engine",
+      "Channel manager integration",
+      "Monthly route content calendar",
+      "Loyalty membership program",
+      "Corporate partnerships playbook",
+      "Seat-fill & revenue dashboard",
+    ],
+    dashboard: {
+      label: "Coach Operator Console",
+      kpi: "Direct seat share & repeat rate",
+      stats: [
+        { label: "Direct share", value: "52%", delta: "+18 pts" },
+        { label: "Repeat rate", value: "3.4x", delta: "+1.2x" },
+        { label: "Load factor", value: "78%", delta: "+12 pts" },
+        { label: "Corporate attach", value: "34%", delta: "+16 pts" },
+      ],
+      rows: [
+        { name: "Direct bookings", a: "1,847 seats", b: "£8.20 avg", c: "£15.1k" },
+        { name: "Corporate contracts", a: "412 seats", b: "£7.15 avg", c: "£2.9k" },
+        { name: "Monthly members", a: "284 seats", b: "£6.50 avg", c: "£1.8k" },
+        { name: "Platform (Busbud/Omio)", a: "620 seats", b: "£6.90 avg", c: "£4.3k" },
       ],
     },
   },
