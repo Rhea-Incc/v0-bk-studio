@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { organizationSchema, canonicalUrl } from "@/lib/seo";
 
 
 function NotFoundComponent() {
@@ -79,22 +80,46 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "BK Studio — Hospitality Growth Systems" },
-      { name: "description", content: "We build hospitality growth systems. Content, booking funnels, CRM, automation and communities for hotels, lodges, luxury Airbnb operators and travel brands." },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "googlebot", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "author", content: "BK Studio" },
+      { name: "language", content: "en" },
+      { name: "theme-color", content: "#f5f0ea" },
+      { name: "description", content: "BK Studio builds hospitality growth systems for boutique hotels, safari lodges, luxury Airbnb portfolios, travel brands, restaurants, and coach operators — combining editorial content, booking funnels, CRM, and retention strategy." },
+      { name: "keywords", content: "hospitality growth systems, boutique hotel marketing, luxury travel marketing, direct booking strategy, hospitality CRM, coach operator marketing, tourism growth agency, hotel booking funnel" },
+      { property: "og:site_name", content: "BK Studio" },
       { property: "og:title", content: "BK Studio — Hospitality Growth Systems" },
-      { property: "og:description", content: "We build hospitality growth systems. Content, booking funnels, CRM, automation and communities for hotels, lodges, luxury Airbnb operators and travel brands." },
+      { property: "og:description", content: "BK Studio builds hospitality growth systems for boutique hotels, safari lodges, luxury Airbnb portfolios, travel brands, restaurants, and coach operators — combining editorial content, booking funnels, CRM, and retention strategy." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/") },
+      { property: "og:locale", content: "en_GB" },
+      { property: "og:image", content: "https://thebk.studio/og-image.svg" },
+      { property: "og:image:alt", content: "BK Studio hospitality growth systems" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "BK Studio — Hospitality Growth Systems" },
-      { name: "twitter:description", content: "We build hospitality growth systems. Content, booking funnels, CRM, automation and communities for hotels, lodges, luxury Airbnb operators and travel brands." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/81a70c51-0e3a-4ea0-8b65-2138019978c2" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/81a70c51-0e3a-4ea0-8b65-2138019978c2" },
+      { name: "twitter:description", content: "BK Studio builds hospitality growth systems for boutique hotels, safari lodges, luxury Airbnb portfolios, travel brands, restaurants, and coach operators — combining editorial content, booking funnels, CRM, and retention strategy." },
+      { name: "twitter:image", content: "https://thebk.studio/og-image.svg" },
+      { name: "twitter:image:alt", content: "BK Studio hospitality growth systems" },
+      { name: "twitter:site", content: "@bkstudio" },
+      { name: "title", content: "BK Studio — Hospitality Growth Systems" },
+      { name: "msapplication-TileColor", content: "#f5f0ea" },
     ],
     links: [
+      { rel: "canonical", href: canonicalUrl("/") },
+      { rel: "alternate", href: canonicalUrl("/"), hrefLang: "en" },
+      { rel: "alternate", href: "https://bkstudio.lucene.co/", hrefLang: "en" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "manifest", href: "/site.webmanifest" },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(organizationSchema(canonicalUrl("/")))
+      }
     ],
   }),
   shellComponent: RootShell,

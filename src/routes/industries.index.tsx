@@ -1,15 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeader, FinalCTA } from "@/components/bk/shared";
 import { industries } from "@/lib/industries";
+import { canonicalUrl, professionalServiceSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/industries/")({
   head: () => ({
     meta: [
       { title: "Industries — BK Studio" },
-      { name: "description", content: "Growth systems tailored to each hospitality vertical: boutique hotels, safari lodges, luxury villas, travel brands, restaurants, and coach transport." },
+      { name: "description", content: "BK Studio builds hospitality growth systems for boutique hotels, safari lodges, luxury villas, travel brands, restaurants, and coach operators." },
       { property: "og:title", content: "Industries — BK Studio" },
-      { property: "og:description", content: "One studio, six hospitality verticals. Each with its own philosophy, pipeline, and deliverables." },
+      { property: "og:description", content: "One studio, six hospitality verticals. Each with its own philosophy, pipeline, and delivery system." },
     ],
+    links: [
+      { rel: "canonical", href: canonicalUrl("/industries") },
+      { rel: "alternate", href: canonicalUrl("/industries"), hrefLang: "en" },
+      { rel: "alternate", href: "https://bkstudio.lucene.co/industries", hrefLang: "en" },
+    ],
+    script: [{
+      type: "application/ld+json",
+      children: JSON.stringify(professionalServiceSchema(
+        "BK Studio Industries",
+        "BK Studio builds hospitality growth systems for boutique hotels, safari lodges, luxury villas, travel brands, restaurants, and coach operators.",
+        canonicalUrl("/industries"),
+      )),
+    }],
   }),
   component: IndustriesIndex,
 });

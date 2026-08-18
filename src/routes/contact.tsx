@@ -5,17 +5,27 @@ import { PageShell, PageHeader, Eyebrow, media } from "@/components/bk/shared";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { industries } from "@/lib/industries";
+import { canonicalUrl, contactPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — BK Studio" },
-      { name: "description", content: "A conversation is the natural first step. Tell us about your property and we'll be in touch." },
+      { name: "description", content: "Talk to BK Studio about your hospitality brand, property, or growth challenge. Book a strategy session and tell us about your next chapter." },
       { property: "og:title", content: "Contact — BK Studio" },
-      { property: "og:description", content: "Book a strategy session." },
+      { property: "og:description", content: "Book a strategy session with BK Studio for your hospitality brand or property." },
       { property: "og:image", content: media.gravityImg.url },
       { name: "twitter:image", content: media.gravityImg.url },
     ],
+    links: [
+      { rel: "canonical", href: canonicalUrl("/contact") },
+      { rel: "alternate", href: canonicalUrl("/contact"), hrefLang: "en" },
+      { rel: "alternate", href: "https://bkstudio.lucene.co/contact", hrefLang: "en" },
+    ],
+    script: [{
+      type: "application/ld+json",
+      children: JSON.stringify(contactPageSchema(canonicalUrl("/"))),
+    }],
   }),
   component: ContactPage,
 });
@@ -100,7 +110,7 @@ function ContactPage() {
             </div>
             <div>
               <Eyebrow num="B">Offices</Eyebrow>
-              <p className="text-espresso text-[15px] leading-[1.7] mt-3">Sebuleni Center, Riara Road · Nairobi · <Mombasa></Mombasa>.<br/>Partners globally.</p>
+              <p className="text-espresso text-[15px] leading-[1.7] mt-3"> Sebuleni Center, Riara Road · Nairobi · <br/>Partners globally.</p>
             </div>
             <div>
               <Eyebrow num="C">Availability</Eyebrow>

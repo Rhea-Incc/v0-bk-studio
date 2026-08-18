@@ -10,7 +10,9 @@ import signalImgPointer from "@/assets/signal.png.asset.json";
 import moroccoImgPointer from "@/assets/morocco.jpg.asset.json";
 import interiorImgPointer from "@/assets/interior.jpg.asset.json";
 import dotsImgPointer from "@/assets/dots.png.asset.json";
+import coachImgPointer from "@/assets/coach.jpg.asset.json";
 import { assetUrl } from "@/lib/media";
+import { industries } from "@/lib/industries";
 
 const portableAsset = <T extends { url: string }>(pointer: T): T => ({
   ...pointer,
@@ -26,10 +28,11 @@ const signalImg = portableAsset(signalImgPointer);
 const moroccoImg = portableAsset(moroccoImgPointer);
 const interiorImg = portableAsset(interiorImgPointer);
 const dotsImg = portableAsset(dotsImgPointer);
+const coachImg = portableAsset(coachImgPointer);
 
 export const media = {
   heroVideo, glassImg, timberImg, bronzeImg, gravityImg,
-  signalImg, moroccoImg, interiorImg, dotsImg,
+  signalImg, moroccoImg, interiorImg, dotsImg, coachImg,
 };
 
 /* ============================================================
@@ -284,6 +287,11 @@ export function Footer() {
             <li><Link to="/services">Services</Link></li>
             <li><Link to="/work">Work</Link></li>
             <li><Link to="/studio">Principles</Link></li>
+            <li>
+              <a href="/media/BK_Studio_Company_Profile%20(1).pdf" download className="hover:text-espresso">
+                View The BK Monograph
+              </a>
+            </li>
           </ul>
         </div>
         <div className="md:col-span-2">
@@ -414,14 +422,12 @@ export function Hero() {
 
 /* WhoWeHelp — used on homepage + services */
 export function WhoWeHelp() {
-  const cards = [
-    { t: "Hotels", d: "Independent and boutique hotel groups.", img: interiorImg.url },
-    { t: "Boutique Lodges", d: "Design-forward stays in remarkable places.", img: timberImg.url },
-    { t: "Luxury Airbnb", d: "Portfolios of premium short-stay properties.", img: interiorImg.url },
-    { t: "Tour Operators", d: "Curated experiences and destination brands.", img: moroccoImg.url },
-    { t: "Real Estate", d: "Branded residences and rental properties.", img: glassImg.url },
-    { t: "Hospitality Startups", d: "New concepts building their first system.", img: bronzeImg.url },
-  ];
+  const cards = industries.slice(0, 6).map((industry) => ({
+    t: industry.name,
+    d: industry.tagline,
+    img: industry.hero,
+  }));
+
   return (
     <section className="max-w-editorial container-x py-24 md:py-40">
       <SectionHead

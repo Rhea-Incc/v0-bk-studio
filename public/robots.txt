@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Private or non-public app areas
+Disallow: /auth
+Disallow: /_authenticated/
+Disallow: /dashboard
+Disallow: /onboarding
+Disallow: /admin
+
+# Public-facing site maps
+Sitemap: https://thebk.studio/sitemap.xml
+Sitemap: https://bkstudio.lucene.co/sitemap.xml

@@ -1,0 +1,17 @@
+{
+  "name": "BK Studio",
+  "short_name": "BK Studio",
+  "description": "Hospitality growth systems for boutique hotels, lodges, travel brands, restaurants, and coach operators.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F0EA",
+  "theme_color": "#F5F0EA",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell, Eyebrow, FinalCTA } from "@/components/bk/shared";
 import { industryBySlug, industries, type Industry } from "@/lib/industries";
+import { canonicalUrl, professionalServiceSchema } from "@/lib/seo";
 
 
 export const Route = createFileRoute("/industries/$slug")({
@@ -15,12 +16,25 @@ export const Route = createFileRoute("/industries/$slug")({
     return {
       meta: [
         { title: `${ind.name} — BK Studio` },
-        { name: "description", content: ind.tagline },
+        { name: "description", content: ind.tagline + " BK Studio builds the growth systems behind the booking journey for this hospitality sector." },
         { property: "og:title", content: `${ind.name} — BK Studio` },
-        { property: "og:description", content: ind.tagline },
+        { property: "og:description", content: ind.tagline + " BK Studio builds the growth systems behind the booking journey for this hospitality sector." },
         { property: "og:image", content: ind.hero },
         { name: "twitter:image", content: ind.hero },
       ],
+      links: [
+        { rel: "canonical", href: canonicalUrl(`/industries/${ind.slug}`) },
+        { rel: "alternate", href: canonicalUrl(`/industries/${ind.slug}`), hrefLang: "en" },
+        { rel: "alternate", href: `https://bkstudio.lucene.co/industries/${ind.slug}`, hrefLang: "en" },
+      ],
+      script: [{
+        type: "application/ld+json",
+        children: JSON.stringify(professionalServiceSchema(
+          ind.name,
+          `${ind.tagline} ${ind.philosophy}`,
+          canonicalUrl(`/industries/${ind.slug}`),
+        )),
+      }],
     };
   },
   notFoundComponent: () => (
